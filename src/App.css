@@ -30,3 +30,11 @@
     transform: rotate(360deg);
   }
 }
+
+/* CSS for individual React components */
+
+/* ChineseCharacter */
+.chineseCharacter {
+  display: inline-block;
+  padding: 3px;
+}
