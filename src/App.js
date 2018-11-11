@@ -10,7 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import ChineseVerse from './components/song/ChineseVerse/';
-import Pinyin from './components/song/Pinyin';
 
 const styles = theme => ({
   root: {
@@ -70,6 +69,15 @@ class App extends Component {
       },
     ];
 
+    const CHINESE_VERSES =
+      VERSES.map(verse => {
+        return <ChineseVerse
+        text={verse.text}
+        pinyin={verse.pinyin}
+        english={verse.english}
+        showTranslation={visible}/>
+      });
+
     return (
       <div className="App">
       <AppBar position="static" color="default">
@@ -83,16 +91,7 @@ class App extends Component {
         <Button variant="outlined" onClick={this.toggleTranslationVisibility}>
          { visible ? "Hide English translation" : "Show English translation" }
         </Button>
-
-        {
-          VERSES.map(verse => {
-            return <ChineseVerse
-            text={verse.text}
-            pinyin={verse.pinyin}
-            english={verse.english}
-            showTranslation={visible}/>
-          })
-        }
+        {CHINESE_VERSES}
       </Paper>
       </div>
     );

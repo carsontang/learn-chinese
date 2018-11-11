@@ -21,17 +21,19 @@ class ChineseVerse extends Component {
       throw new Error("Number of characters don't match the number of Pinyin words!");
     }
 
+    const verse = characterArray.map((character, index) => (
+      <ChineseCharacter text={character} pinyin={pinyinArray[index]}/>
+    ));
+
+    const translation =
+      <Typography variant="subtitle1" component="h3">
+        {this.props.english}
+      </Typography>;
+
     return (
       <div>
-      {
-        characterArray.map((character, index) => (
-          <ChineseCharacter text={character} pinyin={pinyinArray[index]}/>
-        ))
-      }
-        {this.props.showTranslation ?
-        <Typography variant="subtitle1" component="h3">
-          {this.props.english}
-        </Typography> : null}
+        {verse}
+        {this.props.showTranslation ? translation : null}
       </div>
     );
   }
