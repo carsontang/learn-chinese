@@ -12,6 +12,7 @@ const styles = theme => ({
 });
 
 class ChineseVerse extends Component {
+
   render() {
     const characterArray = this.props.text.split('');
     const pinyinArray = this.props.pinyin.split(' ');
@@ -27,6 +28,10 @@ class ChineseVerse extends Component {
           <ChineseCharacter text={character} pinyin={pinyinArray[index]}/>
         ))
       }
+        {this.props.showTranslation ?
+        <Typography variant="subtitle1" component="h3">
+          {this.props.english}
+        </Typography> : null}
       </div>
     );
   }

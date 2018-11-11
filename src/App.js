@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -20,7 +21,20 @@ const styles = theme => ({
 });
 
 class App extends Component {
+  state = {
+    visible: false,
+  }
+
+  toggleTranslationVisibility = () => {
+    if (this.state.visible === true) {
+      this.setState({ visible: false });
+    } else {
+      this.setState({ visible: true });
+    }
+  }
+
   render() {
+    const { visible } = this.state;
     const { classes } = this.props;
 
     return (
@@ -33,10 +47,29 @@ class App extends Component {
         </Toolbar>
       </AppBar>
       <Paper className={classes.root} elevation={1}>
-        <ChineseVerse text="我想知道" pinyin="wǒ xiǎng zhī dào"/>
-        <ChineseVerse text="流星能飞多久" pinyin="liú xīng néng fēi duō jiǔ"/>
-        <ChineseVerse text="它的美丽是否" pinyin="tā de měi lì shì fǒu"/>
-        <ChineseVerse text="值得去寻求" pinyin="zhí de qù xún qiú"/>
+        <Button variant="outlined" onClick={this.toggleTranslationVisibility}>
+         { visible ? "Hide English translation" : "Show English translation" }
+        </Button>
+        <ChineseVerse
+          text="我想知道"
+          pinyin="wǒ xiǎng zhī dào"
+          english="I want to know"
+          showTranslation={visible}/>
+        <ChineseVerse
+          text="流星能飞多久"
+          pinyin="liú xīng néng fēi duō jiǔ"
+          english="How long can a shooting star fly for?"
+          showTranslation={visible}/>
+        <ChineseVerse
+          text="它的美丽是否"
+          pinyin="tā de měi lì shì fǒu"
+          english="Is its beauty"
+          showTranslation={visible}/>
+        <ChineseVerse
+          text="值得去寻求"
+          pinyin="zhí de qù xún qiú"
+          english="Worth searching for?"
+          showTranslation={visible}/>
       </Paper>
       </div>
     );
