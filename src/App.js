@@ -37,6 +37,39 @@ class App extends Component {
     const { visible } = this.state;
     const { classes } = this.props;
 
+    const VERSES = [
+      {
+        text: "我想知道",
+        pinyin: "wǒ xiǎng zhī dào",
+        english: "I want to know",
+      },
+      {
+        text: "流星能飞多久",
+        pinyin: "liú xīng néng fēi duō jiǔ",
+        english: "How long can a shooting star fly for?",
+      },
+      {
+        text: "它的美丽是否",
+        pinyin: "tā de měi lì shì fǒu",
+        english: "Is its beauty",
+      },
+      {
+        text: "值得去寻求",
+        pinyin: "zhí de qù xún qiú",
+        english: "Worth searching for?",
+      },
+      {
+        text: "夜空的花",
+        pinyin: "yè kōng de huā",
+        english: "The flowers of the night sky",
+      },
+      {
+        text: "散落在你身后",
+        pinyin: "sàn luò zài nǐ shēn hòu",
+        english: "Scatter behind you",
+      },
+    ];
+
     return (
       <div className="App">
       <AppBar position="static" color="default">
@@ -50,26 +83,16 @@ class App extends Component {
         <Button variant="outlined" onClick={this.toggleTranslationVisibility}>
          { visible ? "Hide English translation" : "Show English translation" }
         </Button>
-        <ChineseVerse
-          text="我想知道"
-          pinyin="wǒ xiǎng zhī dào"
-          english="I want to know"
-          showTranslation={visible}/>
-        <ChineseVerse
-          text="流星能飞多久"
-          pinyin="liú xīng néng fēi duō jiǔ"
-          english="How long can a shooting star fly for?"
-          showTranslation={visible}/>
-        <ChineseVerse
-          text="它的美丽是否"
-          pinyin="tā de měi lì shì fǒu"
-          english="Is its beauty"
-          showTranslation={visible}/>
-        <ChineseVerse
-          text="值得去寻求"
-          pinyin="zhí de qù xún qiú"
-          english="Worth searching for?"
-          showTranslation={visible}/>
+
+        {
+          VERSES.map(verse => {
+            return <ChineseVerse
+            text={verse.text}
+            pinyin={verse.pinyin}
+            english={verse.english}
+            showTranslation={visible}/>
+          })
+        }
       </Paper>
       </div>
     );
