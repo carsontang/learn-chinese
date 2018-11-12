@@ -33,8 +33,22 @@
 
 /* CSS for individual React components */
 
+.appDrawer {
+  width: "50%";
+}
 /* ChineseCharacter */
 .chineseCharacter {
   display: inline-block;
   padding: 3px;
+}
+
+/* ChineseWord */
+.chineseWord {
+  display: inline-block;
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.chineseWord:hover {
+  background-color: skyblue;
 }
