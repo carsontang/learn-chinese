@@ -4,20 +4,19 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 class ChineseWord extends Component {
   render() {
-    const characters =
-      <Tooltip disableFocusListener disableTouchListener title="Add">
-        <ChineseCharacter
-          text={this.props.characters.text}
-          pinyin={this.props.characters.pinyin}/>
-      </Tooltip>;
-    
-    const hover =
-      <Tooltip disableFocusListener disableTouchListener title="I want to know">
-        <div>我想</div>
-      </Tooltip>;
+    const characterArray = this.props.characters.split('');
+    const pinyinArray = this.props.pinyin.split(' ');
 
+    if (characterArray.length !== pinyinArray.length) {
+      throw new Error("Number of characters don't match the number of Pinyin words!");
+    }
+
+    const characters = characterArray.map((character, index) => (
+      <ChineseCharacter text={character} pinyin={pinyinArray[index]}/>
+    ));
+    
     return (
-      <div>{characters}{hover}</div>
+      <div className="chineseWord" onClick={this.props.onClick}>{characters}</div>
     );
   }
 }
